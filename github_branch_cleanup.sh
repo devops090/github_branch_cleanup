@@ -1,4 +1,4 @@
-curl -i https://api.github.com/users/devops090/repos -u devops090:nskhpm@123 | sed -e 's/[{}]/''/g' | grep "name" | sed '/name/!d' | sed s/\"name\"://g | sed s/\"//g | sed s/\,//g | sed '/devops090/d'| xargs -n1 &>> ./repolist.txt
+curl -i https://api.github.com/users/devops090/repos -u devops090:d713effbefa571138b3aa7afb84a481822908b7a | sed -e 's/[{}]/''/g' | grep "name" | sed '/name/!d' | sed s/\"name\"://g | sed s/\"//g | sed s/\,//g | sed '/devops090/d'| xargs -n1 &>> ./repolist.txt
 filename=repolist.txt
 while read -r line; do
     name="$line"
