@@ -1,3 +1,5 @@
+rm -rf repolist.csv repo_branch_list.csv branches_list.csv
+curl -i https://api.github.com/users/devops090/repos -u devops090:12ec1e8588c3e7518f1f2671905bb7d47f055d37 | sed -e 's/[{}]/''/g' | grep "name" | sed '/name/!d' | sed s/\"name\"://g | sed s/\"//g | sed s/\,//g | sed '/devops090/d'| xargs -n1 &>> ./repolist.csv
 filename=repolist.csv
 while read -r line; do
     name="$line"
@@ -15,4 +17,4 @@ while IFS=',' read -r f1 f2; do
      echo "Name read from line branch - $name_branch"
         curl -u devops090:12ec1e8588c3e7518f1f2671905bb7d47f055d37 -X GET https://api.github.com/repos/devops090/"$name_repo"/commits/"$name_branch" | grep "date" | sed 's/date/'"$name_repo"','"$name_branch"'/g' | sed s/\"//g | sed 's/:/,/g' | sed 's/ //g' | head -n1 &>> ./lastcommit_date.csv
   done < "$repo_branch"
-  
+ 
