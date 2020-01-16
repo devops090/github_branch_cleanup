@@ -1,4 +1,4 @@
-fpfunction(){
+fpfunction() {
 while IFS=',' read -r f1 f2; do
 		name_repo="$f1"
 		name_branch="$f2"
@@ -13,8 +13,7 @@ while IFS=',' read -r f1 f2; do
 	if [ "$day" -gt 90 ]; then
 		echo ""$name_repo","$name_branch","$dateformat","$day"-days ago" &>> ./last_commit_history_of_braches.csv
 	fi
-}
-
+    }
 for ((i=1;i<=3;i++));do
 	res=$(curl -i https://api.github.com/users/devops090/repos -u devops090:b5e81a8969f9b6c55d7cbd104ad6e27e32d41b04  | sed -e 's/[{}]/''/g' | grep "name" | sed '/name/!d' | sed s/\"name\"://g | sed s/\"//g | sed s/\,//g | sed '/devops090/d'| xargs -n1)
 		while read -r line; do
