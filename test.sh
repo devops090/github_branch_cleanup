@@ -1,6 +1,6 @@
 execfunction () { 
   arr=("$@")
-  echo ${arr[@]}
+  echo "${arr[@]}"
   while IFS=',' read -r f1 f2; do
       name_repo="$f1"
       name_branch="$f2"
