@@ -1,4 +1,4 @@
-execfunction(){ 
+execfunction () { 
   arr=("$@")
   echo ${arr[@]}
   while IFS=',' read -r f1 f2; do
@@ -17,7 +17,7 @@ execfunction(){
   done < <(printf '%s\n' "${arr[@]}")
 }
 
-func(){ 
+func () {
   res=$(curl -i https://api.github.com/users/devops090/repos -u devops090:e952d0879410a1958c31fef0dcd24e443dd9be7e   | sed -e 's/[{}]/''/g' | grep "name" | sed '/name/!d' | sed s/\"name\"://g | sed s/\"//g | sed s/\,//g | sed '/devops090/d'| xargs -n1)
   while read -r line; do
       name="$line"
